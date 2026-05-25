@@ -1,0 +1,43 @@
+{
+    "global": {
+        "seed": 42,
+        "output_folder": "./densenet/train"
+    },
+
+    "data": {
+        "train_data": "./data/train_land.csv",
+        "valid_data": "./data/valid_land.csv",
+        "test_data": "./data/test_land.csv",
+        "cont_cols":  ["Lt_VN02", "Lt_VN03","Lt_VN04","Lt_VN05","Lt_VN06","Lt_VN07","Lt_VN08","Lt_VN08P","Lt_VN09","Lt_VN10","Lt_VN11","Lt_VN11P",
+                        "Lt_SW01","Lt_SW02","Lt_SW03","Lt_SW04","Lt_TI01","Lt_TI02","scatter_ag","Sensor_zenith","Solar_zenith",
+                        "scatter_ag_PL","Sensor_zenith_PL","Solar_zenith_PL","Lt_PI01","Lt_PI02","Lt_PQ01","Lt_PQ02","Lt_PU01","Lt_PU02","Lt_P1_0","Lt_P2_0","Lt_P1_m60","Lt_P2_m60","Lt_P1_p60","Lt_P2_p60",
+                        "scatter_ag_IR","Sensor_zenith_IR"	
+    ],
+        "cate_cols": ["month"],
+        "select_type":"Landuse",
+        "target_col":"fAOD"
+    },
+
+    "dataloader": {
+        "batch_size": 128,
+        "num_workers": 3
+    },
+
+    "model": {
+        "net": {
+            "n_layers": 2,
+            "p_drop": 0.1
+        },
+        "optimizer": {
+            "lr": 0.0003,
+            "weight_decay": 1e-4
+        },
+        "hidden_size":256,
+        "projector_size": 10,
+        "corruption_ratio":0.3,
+        "hidden_dim":228,
+        "alpha": 0.1,
+        "epochs_Pre_training": 50,
+        "epochs_Fine_tuning": 200
+    }
+}
